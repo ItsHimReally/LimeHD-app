@@ -22,9 +22,14 @@ import Filters from "./Screens/Filters";
 import Channel from "./Screens/Channel";
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Bruh from "./Screens/Bruh";
+import LoginMain from "./Screens/LoginMain";
+import { LogBox } from 'react-native'
+import Register from "./Screens/Register";
+import Program from "./Screens/Program";
 
 export default function App({ navigation }) {
   useEffect(() => {}, []);
+  LogBox.ignoreAllLogs(); 
 
   const Stack = createNativeStackNavigator();
 
@@ -34,11 +39,14 @@ export default function App({ navigation }) {
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="LoginMain" component={LoginMain} />
+          <Stack.Screen name="Register" component={Register} />
           <Stack.Screen name="Profile" component={Profile} />
           <Stack.Screen name="Teleprograms" component={Teleprograms} />
           <Stack.Screen name="Subscriptions" component={Subscriptions} />
           <Stack.Screen name="Filters" component={Filters} />
           <Stack.Screen name="Channel" component={Channel} />
+          <Stack.Screen name="Program" component={Program} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

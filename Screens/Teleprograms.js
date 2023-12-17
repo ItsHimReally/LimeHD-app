@@ -135,10 +135,12 @@ const Teleprograms = ({ navigation }) => {
                                             if (index === 0) var timeStr = formatTimeDifference(currentTime, prog["timeEnd"])
                                             else var timeStr = "Начало сегодня в " + formatTime(prog["timeStart"])
                                             return (
-                                                <View style={styles.progProg}>
-                                                    <Text style={styles.progText}>{prog["name"].length > 30 ? prog["name"].slice(0, 27) + "..." : prog["name"]}</Text>
-                                                    <Text style={styles.progTime}>{timeStr}</Text>
-                                                </View>
+                                                <TouchableOpacity onPress={() => navigation.navigate('Program', { programs: programs, channels: channels, channelID: parseInt(currChannel["id"]) })}>
+                                                    <View style={styles.progProg}>
+                                                        <Text style={styles.progText}>{prog["name"].length > 30 ? prog["name"].slice(0, 27) + "..." : prog["name"]}</Text>
+                                                        <Text style={styles.progTime}>{timeStr}</Text>
+                                                    </View>
+                                                </TouchableOpacity>
                                             )
                                         })}
                                     </ScrollView>

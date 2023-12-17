@@ -84,10 +84,9 @@ const Home = ({ navigation }) => {
     const [data1, setData1] = useState([])
     useEffect(() => {
         const myUser = getData().then((response) => {
-            console.log("brruh2", response);
-            if (response["id"] == null) {
-                console.log("bruh", myUser);
-                navigation.navigate("Login");
+            if (response == null) {
+                console.log("bruh", response);
+                navigation.navigate("LoginMain");
             } else {
                 dispatch(setProfile(response));
             }
@@ -157,6 +156,8 @@ const Home = ({ navigation }) => {
             setData1(data)
         })
     }, []);
+
+    console.log("profile", profile)
 
     if (data1.length != 0)
         return (

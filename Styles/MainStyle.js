@@ -449,6 +449,7 @@ const styles = StyleSheet.create({
         marginRight: 10,
         backgroundColor: "#36393F",
         borderRadius: 15,
+        height: 60
     },
     progImg: {
         height: 60,
@@ -510,6 +511,51 @@ const styles = StyleSheet.create({
         position: "absolute",
         bottom: 10,
         left: 15
+    },
+    loginButton: {
+        paddingHorizontal: 25,
+        paddingVertical: 10,
+        backgroundColor: "#666",
+        // 😈😈
+        alignSelf: "center",
+        borderRadius: 15,
+        width: 300,
+        marginTop: 100
+    },
+    loginButtonText: {
+        color: "#FFF",
+        fontSize: 30,
+        
+    },
+    inputLogin: {
+        paddingHorizontal: 25,
+        paddingVertical: 10,
+        backgroundColor: "#666",
+        // 😈😈
+        alignSelf: "center",
+        borderRadius: 15,
+        width: 300,
+        marginTop: 40,
+        color: "#FFF",
+        fontSize: 20
+    },
+    programImg: {
+        width: winWidth * .4,
+        height: 200
+    },
+    programTitle: {
+        color: "#FFF",
+        fontSize: 18,
+        marginLeft: 20,
+        width: winWidth * 0.5,
+        fontWeight: "500"
+    },
+    programDesc: {
+        fontSize: 14,
+        fontWeight: "300",
+        color: "#FFF",
+        width: winWidth * 0.85,
+        marginLeft: winHeight * 0.025
     }
 });
 

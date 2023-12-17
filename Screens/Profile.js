@@ -50,7 +50,7 @@ const Profile = ({ navigation }) => {
     function handleExit() {
         dispatch(setProfile(emptyUser));
         storeData(emptyUser);
-        navigation.push("Login");
+        navigation.navigate("LoginMain");
     }
 
     const storeData = async (value) => {
@@ -66,7 +66,7 @@ const Profile = ({ navigation }) => {
         try {
             const jsonValue = await AsyncStorage.getItem("userData");
             console.log("cache", jsonValue);
-            return jsonValue != null ? JSON.parse(jsonValue) : null;
+            return jsonValue != null || jsonValue != undefined ? JSON.parse(jsonValue) : null;
         } catch (e) {
             console.error("READING CACHE ERROR\n", e);
         }
@@ -74,15 +74,25 @@ const Profile = ({ navigation }) => {
 
     useEffect(() => {
         const myUser = getData().then((response) => {
+            // if (response !== undefined)
+            console.log('check', response["id"])
             if (response["id"] == null) {
                 console.log(myUser);
-                navigation.navigate("Login");
+                navigation.navigate("LoginMain");
             }
-            if (profile["id"] == null) {
+            // if (profile !== undefined)
+            console.log('check2', profile["id"])
+            if (profile["id"] != null) {
                 dispatch(setProfile(response));
             }
+            else navigation.navigate("LoginMain");
+            // else navigation.navigate("LoginMain");
         });
     }, [profile]);
+    console.log('user profile', profile)
+    console.log('cache', getData().then(response => console.log(response)))
+
+    if (profile !== undefined)
     if (profile["id"] != null)
         return (
             <View style={styles.container}>
