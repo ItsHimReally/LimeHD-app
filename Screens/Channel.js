@@ -99,24 +99,24 @@ const Channel = ({ navigation, route }) => {
     function isToday(date) {
         const today = new Date();
         return date.getDate() === today.getDate() &&
-               date.getMonth() === today.getMonth() &&
-               date.getFullYear() === today.getFullYear();
-      }
-      
-      function isTomorrow(date) {
+            date.getMonth() === today.getMonth() &&
+            date.getFullYear() === today.getFullYear();
+    }
+
+    function isTomorrow(date) {
         const tomorrow = new Date();
         tomorrow.setDate(tomorrow.getDate() + 1);
         return date.getDate() === tomorrow.getDate() &&
-               date.getMonth() === tomorrow.getMonth() &&
-               date.getFullYear() === tomorrow.getFullYear();
-      }
-      function isTomorrow1(date) {
+            date.getMonth() === tomorrow.getMonth() &&
+            date.getFullYear() === tomorrow.getFullYear();
+    }
+    function isTomorrow1(date) {
         const tomorrow = new Date();
         tomorrow.setDate(tomorrow.getDate() + 2);
         return date.getDate() === tomorrow.getDate() &&
-               date.getMonth() === tomorrow.getMonth() &&
-               date.getFullYear() === tomorrow.getFullYear();
-      }
+            date.getMonth() === tomorrow.getMonth() &&
+            date.getFullYear() === tomorrow.getFullYear();
+    }
 
     if (channel != undefined)
         if (channel["name"] != undefined)
@@ -159,15 +159,15 @@ const Channel = ({ navigation, route }) => {
                     <View style={styles.channelLine} />
                     <ScrollView style={{}}>
                         {programs[channelID].filter(item => tableActive == 1 ? isToday(item["timeStart"]) : tableActive == 2 ? isTomorrow(item["timeStart"]) : isTomorrow1(item["timeStart"])).length != 0 ?
-                        programs[channelID].filter(item => tableActive == 1 ? isToday(item["timeStart"]) : tableActive == 2 ? isTomorrow(item["timeStart"]) : isTomorrow1(item["timeStart"])).map(prog => {
-                            return (
-                                <View style={styles.channelsProg}>
-                                    <Text style={styles.channelsProgText}>{prog["name"]}</Text>
-                                    <Text style={styles.channelsProgTime}>{formatTime(prog["timeStart"])} - {formatTime(prog["timeEnd"])}</Text>
-                                    <Text style={styles.channelsType}>{prog["isSeries"] ? 'Сериал/Шоу' : 'Фильм'}</Text>
-                                </View>
-                            )
-                        }) : <Text style={styles.noProg}>На этот день нет расписания :(</Text>}
+                            programs[channelID].filter(item => tableActive == 1 ? isToday(item["timeStart"]) : tableActive == 2 ? isTomorrow(item["timeStart"]) : isTomorrow1(item["timeStart"])).map(prog => {
+                                return (
+                                    <View style={styles.channelsProg}>
+                                        <Text style={styles.channelsProgText}>{prog["name"]}</Text>
+                                        <Text style={styles.channelsProgTime}>{formatTime(prog["timeStart"])} - {formatTime(prog["timeEnd"])}</Text>
+                                        <Text style={styles.channelsType}>{prog["isSeries"] ? 'Сериал/Шоу' : 'Фильм'}</Text>
+                                    </View>
+                                )
+                            }) : <Text style={styles.noProg}>На этот день нет расписания :(</Text>}
                     </ScrollView>
                     {/* <View style={{height: 40}}/> */}
                 </View>
