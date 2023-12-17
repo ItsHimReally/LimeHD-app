@@ -4,7 +4,7 @@ import styles from '../Styles/MainStyle';
 import { useEffect, useRef, useState } from 'react';
 import homeStyles from '../Styles/MainStyle'
 
-const RecScroller = () => {
+const RecScroller = ({navigation}) => {
 
     const winWidth = Dimensions.get('window').width
 
@@ -70,6 +70,8 @@ const RecScroller = () => {
         )
     }
 
+    channels = [257, 6604, 6849, 6841]
+
     return (
         <View>
             <ScrollView
@@ -80,10 +82,10 @@ const RecScroller = () => {
                 style={homeStyles.scroller}
                 onScroll={handleScroll}
             >
-                <View style={homeStyles.scroller.item}><Bar/><Text>Брух 1</Text></View>
-                <View style={homeStyles.scroller.item}><Bar/><Text>Брух 2</Text></View>
-                <View style={homeStyles.scroller.item}><Bar/><Text>Брух 3</Text></View>
-                <View style={homeStyles.scroller.item}><Bar/><Text>Брух 4</Text></View>
+                <TouchableOpacity><View style={homeStyles.scroller.item}><Bar/><Text style={styles.recName}>Падение олимпа</Text></View></TouchableOpacity>
+                <TouchableOpacity><View style={homeStyles.scroller.item}><Bar/><Text style={styles.recName}>Большая игра</Text></View></TouchableOpacity>
+                <TouchableOpacity><View style={homeStyles.scroller.item}><Bar/><Text style={styles.recName}>Comedy Club</Text></View></TouchableOpacity>
+                <TouchableOpacity><View style={homeStyles.scroller.item}><Bar/><Text style={styles.recName}>Легенда о круге</Text></View></TouchableOpacity>
 
             </ScrollView>
         </View>

@@ -26,7 +26,7 @@ const LoginMain = ({ navigation }) => {
                 <View style={[styles.loginButton, {marginTop: 200}]}>
                     <Text style={styles.loginButtonText}>Регистрация</Text>
                 </View>
-                </TouchableOpacity>
+            </TouchableOpacity>
                 {/* <TouchableOpacity onPress={() => navigation.navigate("Login")}>
                 <View style={styles.loginButton}>
                     <Text style={styles.loginButtonText}>Вход</Text>
