@@ -329,28 +329,35 @@ const styles = StyleSheet.create({
         marginLeft: winWidth * 0.025 + 10
     },
     videoDiv: {
-        marginTop: winHeight * 0.07 + 100,
+        marginTop: 10,
     },
     video: {
         width: winWidth,
         height: 240,
-        zIndex: 0,
+        zIndex: -1,
         position: 'absolute',
         top: 0
     },
     fullscreenVideo: {
         position: 'absolute',
+        width: winHeight,
+        height: winWidth,
         top: 0,
         left: 0,
         bottom: 0,
         right: 0,
+        // transform: [{scale: winWidth / 240}]
     },
     videoLayer: {
         top: 0,
         position: "absolute",
         height: 240,
         width: winWidth,
-        zIndex: 1
+        zIndex: 19,
+        // backgroundColor: "rgba(0, 0, 0, .5)"
+    },
+    overlay: {
+        zIndex: 20
     },
     pause: {
         width: 40,
@@ -358,6 +365,151 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         position: "absolute",
         top: 100
+    },
+    fullscreen: {
+        width: 50,
+        height: 50,
+        position: "absolute",
+        top: 200,
+        right: 20
+    },
+    sound: {
+        width: 50,
+        height: 50,
+        position: "absolute",
+        top: 200,
+        left: 20
+    },
+    channelInfo: {
+        backgroundColor: "#36393F",
+        marginTop: 270,
+        flexDirection: "row",
+        paddingBottom: 10,
+        paddingTop: 10,
+        paddingLeft: 10,
+        borderRadius: 20,
+        width: winWidth * .95,
+        marginLeft: winWidth * 0.025,
+        alignItems: 'center'
+    },
+    channelImg: {
+        width: 60,
+        height: 60
+    },
+    channelTitle: {
+        color: "#FFF",
+        fontSize: 28,
+        fontWeight: "600",
+        marginLeft: 10,
+        width: winWidth * 0.95 - 80
+    },
+    channelTableScroller: {
+        marginTop: 20,
+        flex: 0,
+        flexGrow: 0,
+        height: 60,
+        marginBottom: 10
+        // width: winWidth * 1.5
+    },
+    channelTableDiv: {
+        width: winWidth * .5,
+        // borderBottomColor: "#bbb",
+        // borderBottomWidth: 2,
+        height: 40,
+        flex: 0,
+    },
+    channelTableText: {
+        color: "#FFF",
+        fontSize: 18,
+        alignSelf: "center",
+        flex: 0
+    },
+    channelTableTextActive: {
+        color: "#97EE00",
+        fontSize: 18,
+        alignSelf: "center",
+        flex: 0
+    },
+    channelLine: {
+        // marginTop: -5,
+        height: 2,
+        width: winWidth * 1.5,
+        backgroundColor: "#BBB"
+    },
+    progChannel: {
+        flexDirection: "row"
+    },
+    progRow: {
+        flexDirection: "row",
+        marginTop: 15
+    },
+    progProg: {
+        width: winWidth - 80,
+        // marginRight: winWidth * .025
+        marginRight: 10,
+        backgroundColor: "#36393F",
+        borderRadius: 15,
+    },
+    progImg: {
+        height: 60,
+        width: 60
+    },
+    progRowScroller: {
+        flexGrow: 0,
+        // Make sure the ScrollView takes the full width it needs
+        width: winWidth,
+        marginLeft: 10
+    },
+    progText: {
+        color: "#FFF",
+        fontSize: 18,
+        marginTop: 5,
+        marginLeft: 10
+    },
+    progTime: {
+        "color": "#FFF",
+        fontSize: 12,
+        position: "absolute",
+        bottom: 5,
+        left: 10
+    },
+    channelsProg: {
+        width: winWidth * .95,
+        marginLeft: winWidth * .025,
+        height: 100,
+        backgroundColor: "#36393F",
+        marginTop: 20,
+        borderRadius: 20
+    },
+    channelsProgText: {
+        color: "#FFF",
+        fontSize: 22,
+        fontWeight: "500",
+        position: 'absolute',
+        top: 10,
+        left: 15
+    },
+    channelsProgTime: {
+        color: "#FFF",
+        fontWeight: "400",
+        fontVariant: "italic",
+        fontSize: 18,
+        position: "absolute",
+        bottom: 10,
+        right: 15
+    },
+    noProg: {
+        color: "#FFF",
+        fontSize: 20,
+        alignSelf: "center",
+        marginTop: 100
+    },
+    channelsType: {
+        fontSize: 18,
+        color: "#bbb",
+        position: "absolute",
+        bottom: 10,
+        left: 15
     }
 });
 

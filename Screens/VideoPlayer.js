@@ -10,41 +10,92 @@ import { Video } from 'expo-av';
 
 /// ICON ///
 import Pause from '../assets/pause.svg'
+import Fullscreen from '../assets/fullscreen.svg'
+import Play from '../assets/play.svg'
+import Sound from '../assets/sound.svg'
+import SoundOff from '../assets/soundOff.svg'
 
 
-const VideoPlayer = (link) => {
+const VideoPlayer = ({link}) => {
     const [isFullscreen, setIsFullscreen] = useState(false);
-    const [hidden, setHidden] = useState(false);
+    const [hidden, setHidden] = useState(1);
+
+    const [timeLeft, setTimeLeft] = useState(5)
+    const [isRunning, setIsRunning] = useState(true)
+
+    const [paused, setPaused] = useState(false)
+    const [muted, setMuted] = useState(true)
 
     const handleFullscreen = async () => {
-        if (isFullscreen) {
-            // Exiting fullscreen - change orientation to portrait
-            await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
-        } else {
-            // Entering fullscreen - change orientation to landscape
-            await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE_LEFT);
-        }
-        setIsFullscreen(!isFullscreen);
+        // if (isFullscreen) {
+        //     // Exiting fullscreen - change orientation to portrait
+        //     await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
+        // } else {
+        //     // Entering fullscreen - change orientation to landscape
+        //     await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE_LEFT);
+        // }
+        // setIsFullscreen(!isFullscreen);
     };
 
+    const updateTime = () => {
+        if (timeLeft > 0.31) setTimeLeft(0.3)
+        else{
+            setTimeLeft(5);
+            setHidden(1);
+        }
+        
+    }
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+            isRunning && setTimeLeft((timeLeft) => (timeLeft >= 0.1 ? timeLeft - 0.1 : 0))
+            if (timeLeft <= .3) setHidden(timeLeft * 3);
+        }, 50)
+
+        if (timeLeft === 5) {
+            // scrollToPage();
+
+        }
+        return () => {
+            clearInterval(interval);
+        }
+    }, [timeLeft, isRunning])
+
+    const handlePause = () => {
+        if (hidden == 1){
+            setTimeLeft(5);
+            setPaused(!paused)
+        }
+    }
+
+    const handleMute = () => {
+        if (hidden == 1){
+            setTimeLeft(5);
+            setMuted(!muted)
+        }
+        
+    }
 
     return(
         <View style={styles.videoDiv}>
+            <Pressable style={styles.overlay} onPress={() => updateTime()}><View style={{...styles.videoLayer, opacity: hidden, zIndex: 20}}>
+                <TouchableOpacity>
+                    {paused ? <Play onPress={() => handlePause()} style={styles.pause}/> : <Pause onPress={() => handlePause()} style={styles.pause}/> }
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => handleFullscreen()}><Fullscreen style={styles.fullscreen}/></TouchableOpacity>
+                <TouchableOpacity>{muted ? <SoundOff onPress={() => handleMute()} style={styles.sound}/> : <Sound onPress={() => handleMute()} style={styles.sound}/>}</TouchableOpacity>
+            </View></Pressable>
             <Video
-                source={{ uri: "https://mhd.iptv2022.com/p/sk8u51fW7_guBD8jz3XnYw,1702953194/streaming/1kanalott/324/1/index.m3u8" }}
+                source={{ uri: link }}
                 rate={1.0}
                 volume={1.0}
-                isMuted={false}
+                isMuted={muted}
                 resizeMode="cover"
-                shouldPlay
+                shouldPlay={!paused}
                 isLooping
-                useNativeControls
+                useNativeControls={false}
                 style={isFullscreen ? styles.fullscreenVideo : styles.video}
             />
-            <Pressable><View style={styles.videoLayer && {opacity: hidden}}>
-                <Pause style={styles.pause}/>
-            </View></Pressable>
         </View>
     )
 }

@@ -19,6 +19,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as NavigationBar from "expo-navigation-bar";
 import Filters from "./Screens/Filters";
+import Channel from "./Screens/Channel";
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import Bruh from "./Screens/Bruh";
 
 export default function App({ navigation }) {
   useEffect(() => {}, []);
@@ -35,8 +38,10 @@ export default function App({ navigation }) {
           <Stack.Screen name="Teleprograms" component={Teleprograms} />
           <Stack.Screen name="Subscriptions" component={Subscriptions} />
           <Stack.Screen name="Filters" component={Filters} />
+          <Stack.Screen name="Channel" component={Channel} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
+
   );
 }

@@ -1,5 +1,5 @@
 import { Reducer } from "redux";
-import { SET_PROFILE, SET_FILTERS } from "./actions";
+import { SET_PROFILE, SET_FILTERS, SET_CHANNELS, SET_PROGRAMS } from "./actions";
 
 const initialState = {
     profile: {
@@ -23,7 +23,9 @@ const initialState = {
         prodYear: "",
         prodPlace: "",
         duration: -1
-    }
+    },
+    channels: [],
+    programs: []
 };
 
 function userReducer(state = initialState, action: { type: any; payload: Reducer; }) {
@@ -32,6 +34,16 @@ function userReducer(state = initialState, action: { type: any; payload: Reducer
             return {...state, profile: action.payload}
         case SET_FILTERS:
             return {...state, filters: action.payload}
+        case SET_CHANNELS:
+            return {
+                ...state,
+                channels: action.payload
+            };
+        case SET_PROGRAMS:
+            return {
+                ...state,
+                programs: action.payload
+            };
         default:
             return state;
     }
